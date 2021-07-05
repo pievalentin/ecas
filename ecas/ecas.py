@@ -47,7 +47,7 @@ def list_ecas_steps(lastname: str, iuc_identifier: int, birthday: str, birth_cou
             'https://services3.cic.gc.ca/ecas/security.do', headers=headers)
 
         # 2 Validate security
-        time.sleep(random.choice([3, 4, 7]))
+        time.sleep(random.choice([1, 2]))
         headers = generate_header('https://services3.cic.gc.ca/ecas/security.do')
         headers['Content-Type'] = 'application/x-www-form-urlencoded'
         headers['Origin'] = 'https://services3.cic.gc.ca'
@@ -62,7 +62,7 @@ def list_ecas_steps(lastname: str, iuc_identifier: int, birthday: str, birth_cou
             'https://services3.cic.gc.ca/ecas/security.do', headers=headers, data=data)
 
         # 3 Send info to get to user page
-        time.sleep(random.choice([15, 17, 20]))
+        time.sleep(random.choice([10,7,6]))
         headers = generate_header('https://services3.cic.gc.ca/ecas/authenticate.do')
         headers['Content-Type'] = 'application/x-www-form-urlencoded'
         headers['Origin'] = 'https://services3.cic.gc.ca'
@@ -85,7 +85,7 @@ def list_ecas_steps(lastname: str, iuc_identifier: int, birthday: str, birth_cou
         status = ''.join(BeautifulSoup(response3.text, 'html.parser').td.next_sibling.next_sibling.a.text.split())
 
         # 4 Click on the link to see detail of PR
-        time.sleep(random.choice([4, 5, 7]))
+        time.sleep(random.choice([1,2]))
         headers = generate_header('https://services3.cic.gc.ca/ecas/viewcasestatus.do')
 
         rp_id = re.search("(?:id=)(\d*)(?:&+?)", BeautifulSoup(response3.text,
@@ -101,7 +101,7 @@ def list_ecas_steps(lastname: str, iuc_identifier: int, birthday: str, birth_cou
         response4 = s.get(
             'https://services3.cic.gc.ca/ecas/viewcasehistory.do', headers=headers, params=params)
 
-    click.echo(f'Your status is: {status}')
+    click.echo(f'Your status is: {status} \n')
     click.echo('The detail of your process is:')
     for li in BeautifulSoup(response4.text, 'html.parser').find_all('li', class_='mrgn-bttm-md'):
         click.echo(f'- {li.string}')
