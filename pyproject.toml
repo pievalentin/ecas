@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "ecas"
+version = "0.1.0"
+description = "A CLI to directly read your PR status"
+authors = ["Pierre Valentin <pievalentin@gmail.com>"]
+readme = "README.md"
+license = "MIT"
+repository="https://github.com/pievalentin/ecas"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+beautifulsoup4 = "^4.9.3"
+requests = "^2.25.1"
+click = "^8.0.1"
+
+[tool.poetry.scripts]
+ecas = "ecas.ecas:list_ecas_steps"
+
+[tool.poetry.dev-dependencies]
+pdbpp = "^0.10.2"
+autopep8 = "^1.5.7"
+isort = "^5.9.1"
+dephell = "^0.8.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
