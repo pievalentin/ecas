@@ -32,7 +32,8 @@ def generate_header(referer: str):
 @click.argument('iuc_identifier', type=click.INT)
 @click.argument('birthday', type=click.DateTime(formats=["%Y-%m-%d"]))
 @click.argument('birth_country_code', type=click.STRING)
-def list_ecas_steps(lastname: str, iuc_identifier: int, birthday: str, birth_country_code: str):
+@click.option('--fast/', default=False, help="Remove waiting time between call. To use sparsly!")
+def list_ecas_steps(lastname: str, iuc_identifier: int, birthday: str, birth_country_code: str, fast: bool):
     """A CLI tool to retrive the status of ECAS \n
     Arguments: \n
         LASTNAME: Your lastname capitalized\n
@@ -50,7 +51,8 @@ def list_ecas_steps(lastname: str, iuc_identifier: int, birthday: str, birth_cou
             'https://services3.cic.gc.ca/ecas/security.do', headers=headers)
 
         # 2 Validate security
-        time.sleep(random.choice([1, 2]))
+        if not fast:
+            time.sleep(random.choice([1, 2]))
         headers = generate_header(
             'https://services3.cic.gc.ca/ecas/security.do')
         headers['Content-Type'] = 'application/x-www-form-urlencoded'
@@ -66,7 +68,8 @@ def list_ecas_steps(lastname: str, iuc_identifier: int, birthday: str, birth_cou
             'https://services3.cic.gc.ca/ecas/security.do', headers=headers, data=data)
 
         # 3 Send info to get to user page
-        time.sleep(random.choice([10, 7, 6]))
+        if not fast:
+            time.sleep(random.choice([10, 7, 6]))
         headers = generate_header(
             'https://services3.cic.gc.ca/ecas/authenticate.do')
         headers['Content-Type'] = 'application/x-www-form-urlencoded'
@@ -91,7 +94,8 @@ def list_ecas_steps(lastname: str, iuc_identifier: int, birthday: str, birth_cou
             response3.text, 'html.parser').td.next_sibling.next_sibling.a.text.split())
 
         # 4 Click on the link to see detail of PR
-        time.sleep(random.choice([1, 2]))
+        if not fast:
+            time.sleep(random.choice([1, 2]))
         headers = generate_header(
             'https://services3.cic.gc.ca/ecas/viewcasestatus.do')
 
