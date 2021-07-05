@@ -7,23 +7,25 @@ import click
 import requests
 from bs4 import BeautifulSoup
 
+
 def generate_header(referer: str):
     headers = {
-            'Connection': 'keep-alive',
-            'Pragma': 'no-cache',
-            'Cache-Control': 'no-cache',
-            'Upgrade-Insecure-Requests': '1',
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'Sec-GPC': '1',
-            'Sec-Fetch-Site': 'same-origin',
-            'Sec-Fetch-Mode': 'navigate',
-            'Sec-Fetch-User': '?1',
-            'Sec-Fetch-Dest': 'document',
-            'Referer': f'{referer}',
-            'Accept-Language': 'en-US,en;q=0.9',
-        }
-    return headers 
+        'Connection': 'keep-alive',
+        'Pragma': 'no-cache',
+        'Cache-Control': 'no-cache',
+        'Upgrade-Insecure-Requests': '1',
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+        'Sec-GPC': '1',
+        'Sec-Fetch-Site': 'same-origin',
+        'Sec-Fetch-Mode': 'navigate',
+        'Sec-Fetch-User': '?1',
+        'Sec-Fetch-Dest': 'document',
+        'Referer': f'{referer}',
+        'Accept-Language': 'en-US,en;q=0.9',
+    }
+    return headers
+
 
 @click.command()
 @click.argument('lastname', type=click.STRING)
@@ -42,13 +44,15 @@ def list_ecas_steps(lastname: str, iuc_identifier: int, birthday: str, birth_cou
     """
     with requests.Session() as s:
         # 1 Pass intro page
-        headers = generate_header('https://services3.cic.gc.ca/ecas/introduction.do?app=')
-        response1 = s.get(
+        headers = generate_header(
+            'https://services3.cic.gc.ca/ecas/introduction.do?app=')
+        s.get(
             'https://services3.cic.gc.ca/ecas/security.do', headers=headers)
 
         # 2 Validate security
         time.sleep(random.choice([1, 2]))
-        headers = generate_header('https://services3.cic.gc.ca/ecas/security.do')
+        headers = generate_header(
+            'https://services3.cic.gc.ca/ecas/security.do')
         headers['Content-Type'] = 'application/x-www-form-urlencoded'
         headers['Origin'] = 'https://services3.cic.gc.ca'
         data = {
@@ -58,12 +62,13 @@ def list_ecas_steps(lastname: str, iuc_identifier: int, birthday: str, birth_cou
             '_target1': 'Continue'
         }
 
-        response2 = s.post(
+        s.post(
             'https://services3.cic.gc.ca/ecas/security.do', headers=headers, data=data)
 
         # 3 Send info to get to user page
-        time.sleep(random.choice([10,7,6]))
-        headers = generate_header('https://services3.cic.gc.ca/ecas/authenticate.do')
+        time.sleep(random.choice([10, 7, 6]))
+        headers = generate_header(
+            'https://services3.cic.gc.ca/ecas/authenticate.do')
         headers['Content-Type'] = 'application/x-www-form-urlencoded'
         headers['Origin'] = 'https://services3.cic.gc.ca'
 
@@ -82,11 +87,13 @@ def list_ecas_steps(lastname: str, iuc_identifier: int, birthday: str, birth_cou
         response3 = s.post(
             'https://services3.cic.gc.ca/ecas/authenticate.do', headers=headers, data=data)
 
-        status = ''.join(BeautifulSoup(response3.text, 'html.parser').td.next_sibling.next_sibling.a.text.split())
+        status = ''.join(BeautifulSoup(
+            response3.text, 'html.parser').td.next_sibling.next_sibling.a.text.split())
 
         # 4 Click on the link to see detail of PR
-        time.sleep(random.choice([1,2]))
-        headers = generate_header('https://services3.cic.gc.ca/ecas/viewcasestatus.do')
+        time.sleep(random.choice([1, 2]))
+        headers = generate_header(
+            'https://services3.cic.gc.ca/ecas/viewcasestatus.do')
 
         rp_id = re.search("(?:id=)(\d*)(?:&+?)", BeautifulSoup(response3.text,
                           'html.parser').td.next_sibling.next_sibling.a['href']).group(1)
