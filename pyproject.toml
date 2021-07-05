@@ -12,9 +12,10 @@ python = "^3.8"
 beautifulsoup4 = "^4.9.3"
 requests = "^2.25.1"
 click = "^8.0.1"
+Flask = "^2.0.1"
 
 [tool.poetry.scripts]
-ecas = "ecas.ecas:list_ecas_steps"
+ecas = "ecas:main"
 
 [tool.poetry.dev-dependencies]
 pdbpp = "^0.10.2"

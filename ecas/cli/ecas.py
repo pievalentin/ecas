@@ -27,7 +27,7 @@ def generate_header(referer: str):
     return headers
 
 
-@click.command()
+@click.command(name='get_info')
 @click.argument('lastname', type=click.STRING)
 @click.argument('iuc_identifier', type=click.INT)
 @click.argument('birthday', type=click.DateTime(formats=["%Y-%m-%d"]))

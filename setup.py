@@ -35,8 +35,8 @@ setup(
     packages=['ecas'],
     package_dir={"": "."},
     package_data={},
-    install_requires=['beautifulsoup4==4.*,>=4.9.3',
-                      'click==8.*,>=8.0.1', 'requests==2.*,>=2.25.1'],
+    install_requires=['beautifulsoup4==4.*,>=4.9.3', 'click==8.*,>=8.0.1',
+                      'flask==2.*,>=2.0.1', 'requests==2.*,>=2.25.1'],
     extras_require={"dev": ["autopep8==1.*,>=1.5.7",
                             "dephell==0.*,>=0.8.3", "isort==5.*,>=5.9.1", "pdbpp==0.*,>=0.10.2"]},
 )
