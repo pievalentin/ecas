@@ -34,7 +34,7 @@ def generate_header(referer: str):
 @click.argument('birth_country_code', type=click.STRING)
 @click.option('--fast', default=False, help="Remove waiting time between call. To use sparsly!")
 def list_ecas_steps(lastname: str, iuc_identifier: int, birthday: str, birth_country_code: str, fast: bool):
-    """A CLI tool to retrive the status of ECAS \n
+    """A CLI tool to retrieve the status of ECAS \n
     Arguments: \n
         LASTNAME: Your lastname capitalized\n
         IUC_IDENTIFIER: Your IRCC IUC number \n
