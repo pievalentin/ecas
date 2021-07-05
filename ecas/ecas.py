@@ -32,7 +32,7 @@ def generate_header(referer: str):
 @click.argument('iuc_identifier', type=click.INT)
 @click.argument('birthday', type=click.DateTime(formats=["%Y-%m-%d"]))
 @click.argument('birth_country_code', type=click.STRING)
-@click.option('--fast', default=False, help="Remove waiting time between call. To use sparsly!")
+@click.option('--fast', default=False, is_flag=True, help="Remove waiting time between call. To use sparsly!")
 def list_ecas_steps(lastname: str, iuc_identifier: int, birthday: str, birth_country_code: str, fast: bool):
     """A CLI tool to retrieve the status of ECAS \n
     Arguments: \n
