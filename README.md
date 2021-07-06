@@ -13,7 +13,7 @@ Run this command to install the tool:
 ```bash
 pip3 install .
 ```
-Restart your terminal so the `ecas` is available.
+Restart your terminal so that `ecas` is available.
 ## Usage
 
 ```bash
@@ -22,7 +22,7 @@ ecas lastname iuc_number birthday birth_country_code
 
 For example for France:
 ```bash
-ecas Dupont 112245589 "2001-01-01" 022
+ecas Dupont 112245589 "2001-01-31" 022
 ```
 
 For more details, you can
