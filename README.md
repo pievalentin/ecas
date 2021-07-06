@@ -1,6 +1,11 @@
 # Ecas RP automation script
 This tool has been written to check the status of your PR application in ECAS automatically. This avoid multiple click and form filling. You can set alert using a system like cron.
 ## Getting started
+### From PyPI
+```bash
+pip3 install Ecas-CLI
+```
+### From Source
 1. Get the code
 
 First get this code on your machine with
