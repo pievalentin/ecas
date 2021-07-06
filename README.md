@@ -3,7 +3,7 @@ This tool has been written to check the status of your PR application in ECAS au
 ## Getting started
 ### From PyPI
 ```bash
-pip3 install Ecas-CLI
+pip3 install ecas
 ```
 ### From Source
 1. Get the code

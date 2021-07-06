@@ -24,7 +24,7 @@ if os.path.exists(readme_path):
 setup(
     long_description=readme,
     name='ecas',
-    version='0.1.0',
+    version='0.2.0',
     description='A CLI to directly read your PR status',
     python_requires='==3.*,>=3.8.0',
     project_urls={"repository": "https://github.com/pievalentin/ecas"},
