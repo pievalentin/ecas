@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ecas"
-version = "0.2.0"
+version = "0.3.0"
 description = "A CLI to directly read your PR status"
 authors = ["Pierre Valentin <pievalentin@gmail.com>"]
 readme = "README.md"
@@ -18,9 +18,8 @@ ecas = "ecas.ecas:list_ecas_steps"
 
 [tool.poetry.dev-dependencies]
 pdbpp = "^0.10.2"
-autopep8 = "^1.5.7"
 isort = "^5.9.1"
-dephell = "^0.8.3"
+black = "^21.11b1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
