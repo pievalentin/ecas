@@ -1,22 +1,32 @@
 # Ecas RP automation script
 This tool has been written to check the status of your PR application in ECAS automatically. This avoid multiple click and form filling. You can set alert using a system like cron.
+
 ## Getting started
 ### From PyPI
 ```bash
 pip3 install ecas
 ```
 ### From Source
-1. Get the code
-
-First get this code on your machine with
+1. Get poetry
+On Linux & MacOS
+```bash
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+```
+On Windows with powershell
+```
+(Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -UseBasicParsing).Content | python -
+```
+2. Get the code
 ```bash
 git clone git@github.com:pievalentin/ecas.git && cd ecas
 ```
-2. Install the tool
-
-Run this command to install the tool:
+3. Build it
 ```bash
-pip3 install .
+poetry build
+```
+The previous command will create a dist folder. Now run:
+```
+pip3 install dist/ecas*.whl
 ```
 Restart your terminal so that `ecas` is available.
 ## Usage
