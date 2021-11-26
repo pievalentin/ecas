@@ -36,7 +36,6 @@ def list_ecas_steps(
     iuc_identifier: int,
     birthday: str,
     birth_country_code: str,
-    fast: bool,
 ):
     """A CLI tool to retrieve the status of ECAS\n
     Arguments:\n
@@ -86,15 +85,25 @@ def list_ecas_steps(
             headers=headers,
             data=data,
         )
-        if response3.status_code != 200:
-            print("An error occured with ircc. Form submission failed")
-            sys.exit(1)
 
-        status = "".join(
-            BeautifulSoup(
-                response3.text, "html.parser"
-            ).td.next_sibling.next_sibling.a.text.split()
-        )
+        try:
+            status = "".join(
+                BeautifulSoup(
+                    response3.text, "html.parser"
+                ).td.next_sibling.next_sibling.a.text.split()
+            )
+        except Exception:
+            print(
+                """
+An error occured with ircc. Form submission failed. 
+Two possibilities:
+    - Either you don\'t have access to ecas
+    - The information you passed to the cli are incorrect.
+If the two previous point does not apply to you.
+Submit an issue here: https://github.com/pievalentin/ecas/issues/new
+            """
+            )
+            sys.exit(1)
 
         # 4 Click on the link to see detail of PR
         headers = generate_header("https://services3.cic.gc.ca/ecas/viewcasestatus.do")
