@@ -36,7 +36,7 @@ ecas --help
 ```
 ## Find your country code
 
-To find your country code, you can look it up [in this file](/country_code.html)
+To find your country code, you can look it up [in this file](/country_code.csv)
 
 ## NB
 Use this tool responsibly. Don't spam IRCC server :)
