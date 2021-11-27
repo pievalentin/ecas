@@ -40,6 +40,21 @@ For example for France:
 ```bash
 ecas Dupont 112245589 "2001-01-31" 022
 ```
+Example of output:
+```
+Your status is: InProcess
+
+The detail of your process is:
+- We received your application for permanent residence  on December 10, 2020.
+- We sent you correspondence acknowledging receipt of your application(s) on October 22, 2021.
+- We started processing your application on October 22, 2021.
+- We sent you correspondence on October 22, 2021. If you have not yet provided the information or the requested documents, please do so as soon as possible.  
+Please wait until you receive the correspondence before sending us additional information, as the correspondence will outline all information that is required.
+- We sent you medical instructions on November 25, 2021. To avoid delays, please provide us the information requested in the letter as soon as possible.  
+Please consider delays in mail delivery before contacting us.
+```
+
+When everything was verified by ircc, your status will change to `DecisionMade` 
 
 For more details, you can
 ```bash
