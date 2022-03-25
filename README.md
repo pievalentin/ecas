@@ -38,7 +38,7 @@ ecas lastname iuc_number birthday birth_country_code
 
 For example for France:
 ```bash
-ecas Dupont 112245589 "2001-01-31" 022
+ecas "Foo Bar" 112245589 "2001-01-31" 022
 ```
 Example of output:
 ```
