@@ -99,7 +99,7 @@ An error occured with ircc. Form submission failed.
 Two possibilities:
     - Either you don\'t have access to ecas
     - The information you passed to the cli are incorrect.
-If the two previous point does not apply to you.
+If the two previous point don\'t not apply to you.
 Submit an issue here: https://github.com/pievalentin/ecas/issues/new
             """
             )
